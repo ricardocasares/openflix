@@ -1,0 +1,28 @@
+{
+  "name": "boilerplate",
+  "version": "0.0.0",
+  "description": "angular + express boilerplate",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ricardocasares/boilerplate.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "express",
+    "expressjs",
+    "boilerplate",
+    "starter",
+    "kit"
+  ],
+  "author": "Ricardo Casares",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricardocasares/boilerplate/issues"
+  },
+  "homepage": "https://github.com/ricardocasares/boilerplate"
+}
