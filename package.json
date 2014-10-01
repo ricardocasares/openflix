@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/ricardocasares/boilerplate/issues"
   },
-  "homepage": "https://github.com/ricardocasares/boilerplate"
+  "homepage": "https://github.com/ricardocasares/boilerplate",
+  "dependencies": {
+    "express": "^4.9.5"
+  }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "boilerplate",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ricardocasares/boilerplate",
+  "authors": [
+    "Ricardo Casares <rcasares@bhp-global.com>"
+  ],
+  "description": "angular + express boilerplate",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "express",
+    "expressjs",
+    "boilerplate",
+    "starter",
+    "kit"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
