@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "In browser torrent streaming netflix clone",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "bower cache clean && bower install"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/ricardocasares/openflix.git"
