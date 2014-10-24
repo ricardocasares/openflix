@@ -17,3 +17,4 @@ In browser torrent streaming open source netflix clone
 ## Wishlist
 * On-the-fly video/audio transcoding
   * Would be great, but I think it might be very slow
+  * Maybe [videoconverter.js](http://bgrins.github.io/videoconverter.js) could help
