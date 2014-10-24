@@ -15,6 +15,22 @@
     "starter",
     "kit"
   ],
+  "dependencies": {
+    "angular": "~1.2.*",
+    "angular-route": "~1.2.*",
+    "bootstrap": "latest",
+    "angular-loading-bar": "~0.6.0",
+    "angular-animate": "~1.2.*",
+    "jquery": "1.*",
+    "fontawesome": "latest",
+    "angular-resource": "~1.2.*",
+    "angular-bootstrap": "~0.11.0",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.3",
+    "angular-slugify": "~1.0.0",
+    "videogular": "~0.6.0",
+    "videogular-poster": "~0.6.0",
+    "videogular-themes-default": "~0.6.0"
+  },
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -23,5 +39,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": "~1.2.*"
+  }
 }

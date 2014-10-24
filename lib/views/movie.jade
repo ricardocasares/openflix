@@ -1,0 +1,47 @@
+.player(ng-show="play")
+  .container
+    .row
+      .col-lg-12
+        videogular(vg-theme="config.theme.url")
+          vg-video(vg-src="config.sources", vg-native-controls="true")  
+.backdrop(style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url('http://image.tmdb.org/t/p/w780/{{movie.backdrop_path}}') no-repeat center top;")
+  .container
+    .row
+      .col-lg-8
+        h1 {{ movie.title }}
+      .col-lg-4
+        .btn-group(ng-show="movie.torrents").pull-right
+          .btn-group
+            button.btn.btn-hollow.dropdown-toggle(data-toggle="dropdown")
+              span.glyphicon.glyphicon-subtitles
+              |  English 
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href="#") Español
+              li
+                a(href="#") Français
+              li
+                a(href="#") Português
+          .btn-group
+            button.btn.btn-hollow.dropdown-toggle(data-toggle="dropdown")
+              span.glyphicon.glyphicon-picture
+              |  {{selectedTorrent.Quality}} 
+              span.caret
+            ul.dropdown-menu
+              li(ng-repeat="t in movie.torrents")
+                a(href="#", ng-click="selectTorrent($index)") {{t.Quality}}
+          button.btn.btn-hollow(ng-click="playToggle()", ng-hide="play")
+            span.glyphicon.glyphicon-play
+            |  Play
+          button.btn.btn-hollow(ng-click="playToggle()", ng-show="play")
+            span.glyphicon.glyphicon-stop
+            |  Stop
+    .row
+      .col-lg-12
+        h2(ng-show="play") {{ movie.tagline }}
+      .col-lg-12
+        p.overview {{ movie.overview }}
+        .alert.alert-info(ng-hide="movie.torrents") This movie is not yet available
+      .col-lg-12
+         

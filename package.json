@@ -26,6 +26,10 @@
   },
   "homepage": "https://github.com/ricardocasares/boilerplate",
   "dependencies": {
-    "express": "^4.9.5"
+    "express": "^4.9.5",
+    "body-parser": "^1.9.0",
+    "oppressor": "0.0.1",
+    "debug": "^2.0.0",
+    "jade": "^1.7.0"
   }
 }
