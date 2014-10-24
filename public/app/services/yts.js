@@ -2,7 +2,7 @@ angular.module('openflix')
   .service('yts', function($http) {
 
     var yts = {};
-    yts.base = 'http://yts.re/api';
+    yts.base = 'https://yts.re/api';
 
     yts.list = function() {
       return $http.get(yts.base + '/list.json')
