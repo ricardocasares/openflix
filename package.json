@@ -1,14 +1,11 @@
 {
-  "name": "boilerplate",
+  "name": "openflix",
   "version": "0.0.0",
-  "description": "angular + express boilerplate",
+  "description": "In browser torrent streaming netflix clone",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ricardocasares/boilerplate.git"
+    "url": "git://github.com/ricardocasares/openflix.git"
   },
   "keywords": [
     "angular",
@@ -16,19 +13,18 @@
     "express",
     "expressjs",
     "boilerplate",
-    "starter",
-    "kit"
+    "netflix",
+    "clone"
   ],
   "author": "Ricardo Casares",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ricardocasares/boilerplate/issues"
+    "url": "https://github.com/ricardocasares/openflix/issues"
   },
-  "homepage": "https://github.com/ricardocasares/boilerplate",
+  "homepage": "https://github.com/ricardocasares/openflix",
   "dependencies": {
     "express": "^4.9.5",
     "body-parser": "^1.9.0",
-    "oppressor": "0.0.1",
     "debug": "^2.0.0",
     "jade": "^1.7.0"
   }
