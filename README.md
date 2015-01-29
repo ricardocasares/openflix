@@ -1,6 +1,8 @@
 openflix
 ========
 
+[![Join the chat at https://gitter.im/ricardocasares/openflix](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ricardocasares/openflix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 In browser torrent streaming open source netflix clone
 
 ## What we got so far
