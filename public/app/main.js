@@ -1,3 +1,4 @@
+'use strict';
 angular
   .module('openflix', [
     'ngRoute',
@@ -38,6 +39,18 @@ angular
           }
         }
       })
+      .when('/genres/:slug/:id', {
+        controller: 'MoviesController',
+        templateUrl: '/views/movies',
+        resolve: {
+          popular: function(tmDB, $route) {
+            return tmDB.genre($route.current.params.id);
+          }
+        }
+      })
       .otherwise({ redirectTo: '/movies'});
     $locationProvider.html5Mode(true);
-  });
+  })
+  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+  }]);

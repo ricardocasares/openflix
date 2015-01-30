@@ -1,18 +1,15 @@
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
-@import url(http://fonts.googleapis.com/css?family=Share:400,700);
+/*@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);*/
 html,body,.outlet { height: 100%; margin: 0px; padding: 0px; }
 body {
   padding-top: 50px;
   font-family: 'Montserrat', sans-serif;
-  background: #000 url('/img/bg.png') fixed;
 }
-
 .container-movie {
   margin-top: 30px;
 }
 
 .container-movie h1 {
-  color: #FFF;
   border-bottom-color: #333;
   margin: 0;
   margin-bottom: 30px;
@@ -23,29 +20,33 @@ body {
 }
 
 .backdrop {
-  padding-top: 90px;
   color: white;
+  background-color: #DDD;
   background-size: 100% !important;
-  height: 100%;
+  background-position: top;
+  background-repeat: no-repeat !important;
+  min-height: 200px;
+  padding: 30px 0;
 }
 
-.backdrop h1 {
-  margin: 0;
-  font-weight: 700;
+.player {
+  background: #000;
+  padding: 30px;
+  width: 100%;
+  height: auto !important;
 }
 
-.backdrop .metadata {
-  font-size: 1.6em;
+video {
+  width: 100% !important;
+  height: auto !important;
+  margin:0;
 }
 
-.backdrop .overview {
-  margin-top:15px;
-  font-size: 1.7em;
-  line-height: 1.7em;
-  word-spacing: 5px;
-  letter-spacing: 1px;
-  margin-bottom: 30px;
-  text-align: justify;
+.movie-data {
+  margin-top: 20px;
+}
+.overview {
+  font-size: 22px;
 }
 
 .btn-hollow {
@@ -63,78 +64,4 @@ body {
 .player {
   padding: 20px;
   height: 400px;
-}
-
-/* when hiding the thing */
-.ng-hide-add         { 
-  -webkit-animation:0.5s fadeOutUp ease; 
-  animation:0.5s fadeOutUp ease; 
-}
-
-/* when showing the thing */
-.ng-hide-remove      { 
-  -webkit-animation:0.5s fadeInDown ease; 
-  animation:0.5s fadeInDown ease; 
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-            transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-            transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-            transform: translate3d(0, -100%, 0);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-            transform: none;
-  }
-}
-
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-          animation-name: fadeInDown;
-}
-
-@-webkit-keyframes fadeOutUp {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-            transform: translate3d(0, -100%, 0);
-  }
-}
-
-@keyframes fadeOutUp {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-            transform: translate3d(0, -100%, 0);
-  }
-}
-
-.fadeOutUp {
-  -webkit-animation-name: fadeOutUp;
-          animation-name: fadeOutUp;
 }

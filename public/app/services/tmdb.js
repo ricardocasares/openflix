@@ -30,5 +30,27 @@ angular
         });
     };
 
+    tmDB.genres = function() {
+      return $http.get(tmDB.base + '/genre/movie/list', {
+          params: {
+            api_key: apiKey
+          }
+        })
+        .success(function(genres){
+          return genres;
+        });
+    };
+
+    tmDB.genre = function(id) {
+      return $http.get(tmDB.base + '/genre/' + id + '/movies', {
+          params: {
+            api_key: apiKey
+          }
+        })
+        .success(function(movies){
+          return movies;
+        });
+    };
+
     return tmDB;
   });

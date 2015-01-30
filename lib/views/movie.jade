@@ -1,47 +1,65 @@
-.player(ng-show="play")
+.backdrop(style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('http://image.tmdb.org/t/p/w780/{{movie.backdrop_path}}');")
   .container
     .row
       .col-lg-12
-        videogular(vg-theme="config.theme.url")
-          vg-video(vg-src="config.sources", vg-native-controls="true")  
-.backdrop(style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url('http://image.tmdb.org/t/p/w780/{{movie.backdrop_path}}') no-repeat center top;")
-  .container
-    .row
-      .col-lg-8
+        span {{ movie.release_date.split('-')[0] }}
         h1 {{ movie.title }}
-      .col-lg-4
-        .btn-group(ng-show="movie.torrents").pull-right
-          .btn-group
-            button.btn.btn-hollow.dropdown-toggle(data-toggle="dropdown")
-              span.glyphicon.glyphicon-subtitles
-              |  English 
-              span.caret
-            ul.dropdown-menu
-              li
-                a(href="#") Español
-              li
-                a(href="#") Français
-              li
-                a(href="#") Português
-          .btn-group
-            button.btn.btn-hollow.dropdown-toggle(data-toggle="dropdown")
-              span.glyphicon.glyphicon-picture
-              |  {{selectedTorrent.Quality}} 
-              span.caret
-            ul.dropdown-menu
-              li(ng-repeat="t in movie.torrents")
-                a(href="#", ng-click="selectTorrent($index)") {{t.Quality}}
-          button.btn.btn-hollow(ng-click="playToggle()", ng-hide="play")
-            span.glyphicon.glyphicon-play
-            |  Play
-          button.btn.btn-hollow(ng-click="playToggle()", ng-show="play")
-            span.glyphicon.glyphicon-stop
-            |  Stop
-    .row
-      .col-lg-12
-        h2(ng-show="play") {{ movie.tagline }}
-      .col-lg-12
-        p.overview {{ movie.overview }}
-        .alert.alert-info(ng-hide="movie.torrents") This movie is not yet available
-      .col-lg-12
-         
+        h2 {{ movie.tagline }}
+
+.player(ng-show="playing")
+  video(controls)
+    source(src="http://techslides.com/demos/sample-videos/small.mp4", type="video/mp4")
+
+.container.movie-data
+  .row
+    .col-lg-12
+      .alert.alert-info(ng-hide="movie.torrents")
+        i.fa.fa-fw.fa-warning
+        |  This movie is not yet available
+      .btn-toolbar(ng-show="movie.torrents")
+        .btn-group
+          button(type="button", ng-click="playing = !playing").btn.btn-sm.btn-default
+            i.fa.fa-play.fa-fw
+            |  Play movie
+        .btn-group
+          button(type="button", ng-click="subtitles = !subtitles").btn.btn-sm.btn-default
+            i(ng-show="subtitles").fa.fa-toggle-on
+            i(ng-hide="subtitles").fa.fa-toggle-off
+            |  Subtitles 
+            span(ng-show="subtitles").text-muted {{ selectedSubtitle.iso_639_1.toUpperCase() }}
+            span(ng-hide="subtitles").text-muted Off
+          button(type="button", data-toggle="dropdown").btn.btn-sm.btn-default.dropdown-toggle
+            i.fa.fa-caret-down
+          ul.dropdown-menu
+            li(ng-repeat="lang in movie.spoken_languages")
+              a(href="#", ng-click="selectSubtitle($index)") {{ lang.name }}
+        .btn-group
+          button(type="button").btn.btn-sm.btn-default
+            | Quality 
+            span.text-muted{{ selectedTorrent.Quality }}
+          button(type="button", data-toggle="dropdown").btn.btn-sm.btn-default.dropdown-toggle
+            i.fa.fa-caret-down
+          ul.dropdown-menu
+            li(ng-repeat="t in movie.torrents", ng-click="selectTorrent($index)")
+              a(href="#") {{ t.Quality }}
+        .btn-group.pull-right
+          button(type="button", ng-click="favourite = !favourite").btn.btn-sm.btn-default
+            i(ng-show="favourite").fa.fa-fw.fa-heart
+            i(ng-hide="favourite").fa.fa-fw.fa-heart-o
+            |  Favorites
+        .btn-group.pull-right
+          button(type="button").btn.btn-sm.btn-default
+            i.fa.fa-fw.fa-link
+            |  Share
+      hr
+  .row
+    .col-lg-12
+      p
+        strong Year 
+        span.text-muted {{ movie.release_date.split('-')[0] }} 
+        strong Runtime 
+        span.text-muted {{ movie.runtime }}min 
+        strong Genres 
+        a(href="/genres/{{ g.name | slugify }}/{{ g.id }}", ng-repeat="g in movie.genres").text-muted {{ g.name }} 
+      p.overview {{ movie.overview }}
+       
