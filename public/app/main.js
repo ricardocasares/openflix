@@ -5,8 +5,7 @@ angular
     'ngAnimate',
     'ngStorage',
     'angular-loading-bar',
-    'slugifier',
-    'akoenig.deckgrid'
+    'slugifier'
   ])
   .constant('TMDBAPI','a21723b09e32b44cfbea649fe81ea9c7')
   .config(function($routeProvider, $locationProvider){
