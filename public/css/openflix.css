@@ -103,6 +103,9 @@ a {
 .navbar-white .navbar-nav > li > a {
   color: #555555;
 }
+.navbar-nav>li>.dropdown-menu {
+  border-top: 0;
+}
 .navbar-white .navbar-nav > li > a:hover, .navbar-white .navbar-nav > li > a:focus {
   color: #000000;
 
