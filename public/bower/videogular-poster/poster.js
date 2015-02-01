@@ -1,36 +1,28 @@
 /**
- * @license Videogular v0.6.0 http://videogular.com
+ * @license Videogular v0.6.3 http://videogular.com
  * Two Fucking Developers http://twofuckingdevelopers.com
  * License: MIT
  */
-"use strict";
 /**
  * @ngdoc directive
- * @name com.2fdevs.videogular.plugins.poster:poster
+ * @name com.2fdevs.videogular.plugins.poster:vgPoster
  * @restrict E
  * @description
  * Shows an image when player hasn't been played or has been completed a video.
  *
- * You can customize vgPosterImage with these attributes:
+ * @param {string} vgUrl String with a scope name variable. URL to an image supported by the img tag.
+ * **This parameter is required.**
  *
  * ```html
- * <videogular vg-width="config.width"
- *    vg-height="config.height"
- *    vg-theme="config.theme.url"
- *    vg-autoplay="config.autoPlay"
- *    vg-responsive="config.responsive">
- *    <video preload='metadata'>
- *        <source src="assets/videos/videogular.mp4" type="video/mp4">
- *        <source src="assets/videos/videogular.webm" type="video/webm">
- *
- *    <track kind="captions" src="assets/subs/pale-blue-dot.vtt" srclang="en" label="English" default></track>
- *    </video>
+ * <videogular vg-theme="config.theme.url" vg-autoplay="config.autoPlay">
+ *    <vg-video vg-src="sources"></vg-video>
  *
  *    <vg-poster-image vg-url='config.plugins.poster.url'></vg-poster-image>
  * </videogular>
  * ```
  *
  */
+"use strict";
 angular.module("com.2fdevs.videogular.plugins.poster", [])
 	.directive(
 	"vgPosterImage",

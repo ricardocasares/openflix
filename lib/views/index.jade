@@ -6,9 +6,10 @@ doctype
 head()
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible', content='IE=edge')
-  title OpenFlix
   meta(name='description', content='')
   meta(name='viewport', content='width=device-width,initial-scale=1')
+  base(href="/")
+  title OpenFlix
   link(rel='stylesheet', href="/bower/angular-loading-bar/build/loading-bar.css")
   link(rel='stylesheet', href='/bower/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='/bower/fontawesome/css/font-awesome.min.css')
@@ -32,7 +33,7 @@ body(ng-app="openflix")
           li.active: a(href="/movies") Popular
           li: a(href="/favorites") Favorites
           li.dropdown
-            a(href="#",data-toggle="dropdown").dropdown-toggle
+            a(data-toggle="dropdown").dropdown-toggle
               | Genres
               i.fa.fa-fw.fa-caret-down
             ul.dropdown-menu
@@ -51,6 +52,7 @@ body(ng-app="openflix")
   script(src="/bower/angular-animate/angular-animate.min.js")
   script(src="/bower/angular-bootstrap/ui-bootstrap-tpls.min.js")
   script(src="/bower/ngstorage/ngStorage.min.js")
+  script(src="/bower/angular-deckgrid/angular-deckgrid.js")
   script(src="/bower/angular-slugify/angular-slugify.js")
   script(src="/app/main.js")
   script(src="/app/directives/movie-collection/movie-collection.js")

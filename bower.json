@@ -30,7 +30,10 @@
     "videogular": "~0.6.0",
     "videogular-poster": "~0.6.0",
     "videogular-themes-default": "~0.6.0",
-    "ngstorage": "~0.3.0"
+    "ngstorage": "~0.3.0",
+    "angular-masonry": "~0.11.0",
+    "angular-masonry-directive": "*",
+    "angular-deckgrid": "~0.5.0"
   },
   "license": "MIT",
   "private": true,

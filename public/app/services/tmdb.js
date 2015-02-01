@@ -1,7 +1,7 @@
 angular
   .module('openflix')
   .service('tmDB', function($http, TMDBAPI){
-    
+
     var tmDB = {};
     var apiKey = TMDBAPI;
 
@@ -10,10 +10,12 @@ angular
     tmDB.popular = function() {
       return $http.get(tmDB.base + '/movie/popular', {
           params: {
-            api_key: apiKey
+            api_key: apiKey,
+            append_to_response: 'overview',
           }
         })
         .success(function(popular){
+          console.log(popular);
           return popular;
         });
     };
