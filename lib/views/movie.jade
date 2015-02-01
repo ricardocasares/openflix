@@ -32,7 +32,7 @@
             i.fa.fa-caret-down
           ul.dropdown-menu
             li(ng-repeat="lang in movie.spoken_languages")
-              a(href="#", ng-click="selectSubtitle($index)") {{ lang.name }}
+              a(ng-click="selectSubtitle($index)") {{ lang.name }}
         .btn-group
           button(type="button").btn.btn-sm.btn-default
             | Quality
@@ -41,7 +41,7 @@
             i.fa.fa-caret-down
           ul.dropdown-menu
             li(ng-repeat="t in movie.torrents", ng-click="selectTorrent($index)")
-              a(href="#") {{ t.Quality }}
+              a {{ t.Quality }}
         .btn-group.pull-right(ng-if="movie.inFavs")
           button(type="button", ng-click="removeFromFavs()").btn.btn-sm.btn-default
             i.fa.fa-fw.fa-heart
