@@ -2,10 +2,10 @@
 angular
   .module('openflix', [
     'ngRoute',
-    'ngAnimate',
     'ngStorage',
     'angular-loading-bar',
-    'slugifier'
+    'slugifier',
+    'ui.bootstrap'
   ])
   .constant('TMDBAPI','a21723b09e32b44cfbea649fe81ea9c7')
   .config(function($routeProvider, $locationProvider){
@@ -14,6 +14,9 @@ angular
         controller: 'MoviesController',
         templateUrl: '/views/movies',
         resolve: {
+          title: function() {
+            return 'Popular';
+          },
           collection: function(tmDB) {
             return tmDB.popular();
           }
@@ -23,6 +26,9 @@ angular
         controller: 'MoviesController',
         templateUrl: '/views/movies',
         resolve: {
+          title: function() {
+            return 'Favorites';
+          },
           collection: function(favService) {
             return favService.get();
           }
@@ -32,6 +38,9 @@ angular
         controller: 'MoviesController',
         templateUrl: '/views/movies',
         resolve: {
+          title: function() {
+            return 'Results';
+          },
           collection: function(tmDB, $route) {
             return tmDB.search($route.current.params.query);
           }
@@ -62,6 +71,9 @@ angular
         controller: 'MoviesController',
         templateUrl: '/views/movies',
         resolve: {
+          title: function($route) {
+            return $route.current.params.slug;
+          },
           collection: function(tmDB, $route) {
             return tmDB.genre($route.current.params.id);
           }

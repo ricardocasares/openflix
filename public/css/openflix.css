@@ -65,3 +65,101 @@ video {
 a {
   cursor: pointer;
 }
+.carousel {
+  height: 300px;
+  overflow: hidden;
+}
+.carousel img {
+  margin: auto;
+  width:100%;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+}
+
+.carousel-caption h2 a {
+  color: #FFF;
+}
+.movie-rating span {
+  margin-left: 10px;
+}
+
+.navbar-white {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.navbar-white .navbar-brand {
+  color: #DB0D24;
+  font-weight: bold;
+}
+.navbar-white .navbar-brand:hover, .navbar-white .navbar-brand:focus {
+  color: #000000;
+}
+.navbar-white .navbar-text {
+  color: #555555;
+}
+.navbar-white .navbar-nav > li > a {
+  color: #555555;
+}
+.navbar-white .navbar-nav > li > a:hover, .navbar-white .navbar-nav > li > a:focus {
+  color: #000000;
+
+  background: #FFF;
+}
+.navbar-white .navbar-nav > .active > a, .navbar-white .navbar-nav > .active > a:hover, .navbar-white .navbar-nav > .active > a:focus {
+  color: #000000;
+  background-color: #ffffff;
+}
+.navbar-white .navbar-nav > .open > a, .navbar-white .navbar-nav > .open > a:hover, .navbar-white .navbar-nav > .open > a:focus {
+  color: #000000;
+  background-color: #ffffff;
+}
+.navbar-white .navbar-toggle {
+  border-color: #ffffff;
+}
+.navbar-white .navbar-toggle:hover, .navbar-white .navbar-toggle:focus {
+  background-color: #ffffff;
+}
+.navbar-white .navbar-toggle .icon-bar {
+  background-color: #555555;
+}
+.navbar-white .navbar-collapse,
+.navbar-white .navbar-form {
+  border-color: #FFF;
+}
+.navbar-white .navbar-link {
+  color: #555555;
+}
+.navbar-white .navbar-link:hover {
+  color: #000000;
+}
+
+@media (max-width: 767px) {
+  .navbar-white .navbar-nav .open .dropdown-menu > li > a {
+    color: #555555;
+  }
+  .navbar-white .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-white .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #000000;
+  }
+  .navbar-white .navbar-nav .open .dropdown-menu > .active > a, .navbar-white .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-white .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #000000;
+    background-color: #ffffff;
+  }
+}
+
+.navbar-white .navbar-brand a {
+  color: red !important;
+}
+
+#loading-bar .bar {
+  background: #DB0D24;
+}
+
+#loading-bar .peg {
+  -moz-box-shadow: #DB0D24 1px 0 6px 1px;
+  -ms-box-shadow: #DB0D24 1px 0 6px 1px;
+  -webkit-box-shadow: #DB0D24 1px 0 6px 1px;
+  box-shadow: #DB0D24 1px 0 6px 1px;
+}

@@ -19,7 +19,7 @@ head()
     script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.0/html5shiv.js")
     script(src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js")
 body(ng-app="openflix")
-  nav(role="navigation", ng-controller="NavController").navbar.navbar-fixed-top.navbar-default
+  nav(role="navigation", ng-controller="NavController").navbar.navbar-fixed-top.navbar-white
     .container
       .navbar-header
         button(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse").navbar-toggle
@@ -30,7 +30,7 @@ body(ng-app="openflix")
         a(href="/" ).navbar-brand {{title}}
       .collapse.navbar-collapse.navbar-ex1-collapse
         ul.nav.navbar-nav
-          li.active: a(href="/movies") Popular
+          li: a(href="/movies") Popular
           li: a(href="/favorites") Favorites
           li.dropdown
             a(data-toggle="dropdown").dropdown-toggle
