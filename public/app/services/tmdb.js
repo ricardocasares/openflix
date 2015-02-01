@@ -15,7 +15,6 @@ angular
           }
         })
         .success(function(popular){
-          console.log(popular);
           return popular;
         });
     };

@@ -16,11 +16,11 @@
     "kit"
   ],
   "dependencies": {
-    "angular": "latest",
-    "angular-route": "latest",
+    "angular": "~1.2.*",
+    "angular-route": "~1.2.*",
     "bootstrap": "latest",
-    "angular-loading-bar": "latest",
-    "angular-animate": "latest",
+    "angular-loading-bar": "~0.6.0",
+    "angular-animate": "~1.2.*",
     "jquery": "1.*",
     "fontawesome": "latest",
     "angular-resource": "~1.2.*",
