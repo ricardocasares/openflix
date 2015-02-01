@@ -52,5 +52,17 @@ angular
         });
     };
 
+    tmDB.search = function(query) {
+      return $http.get(tmDB.base + '/search/movie', {
+          params: {
+            api_key: apiKey,
+            query: query
+          }
+        })
+        .success(function(movies){
+          return movies;
+        });
+    };
+
     return tmDB;
   });

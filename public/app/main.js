@@ -3,10 +3,9 @@ angular
   .module('openflix', [
     'ngRoute',
     'ngAnimate',
+    'ngStorage',
     'angular-loading-bar',
-    'slugifier',
-    'com.2fdevs.videogular',
-    'com.2fdevs.videogular.plugins.poster'
+    'slugifier'
   ])
   .constant('TMDBAPI','a21723b09e32b44cfbea649fe81ea9c7')
   .config(function($routeProvider, $locationProvider){
@@ -15,8 +14,26 @@ angular
         controller: 'MoviesController',
         templateUrl: '/views/movies',
         resolve: {
-          popular: function(tmDB) {
+          collection: function(tmDB) {
             return tmDB.popular();
+          }
+        }
+      })
+      .when('/favorites', {
+        controller: 'MoviesController',
+        templateUrl: '/views/movies',
+        resolve: {
+          collection: function(favService) {
+            return favService.get();
+          }
+        }
+      })
+      .when('/search/:query', {
+        controller: 'MoviesController',
+        templateUrl: '/views/movies',
+        resolve: {
+          collection: function(tmDB, $route) {
+            return tmDB.search($route.current.params.query);
           }
         }
       })
@@ -24,11 +41,13 @@ angular
         controller: 'MovieController',
         templateUrl: '/views/movie',
         resolve: {
-          movie: function(tmDB, yts, $route) {
+          movie: function(tmDB, yts, favService, $route) {
             return tmDB
               .movie($route.current.params.tmdb)
               .then(function(movie){
-                return yts.find(movie.data.imdb_id).then(function(torrents){
+                movie.data.inFavs = favService.check(movie.data.imdb_id);
+                return yts.find(movie.data.imdb_id)
+                  .then(function(torrents){
                   movie.data.torrents = false;
                   if(!torrents.data.error) {
                     movie.data.torrents = torrents.data.MovieList;
@@ -43,7 +62,7 @@ angular
         controller: 'MoviesController',
         templateUrl: '/views/movies',
         resolve: {
-          popular: function(tmDB, $route) {
+          collection: function(tmDB, $route) {
             return tmDB.genre($route.current.params.id);
           }
         }

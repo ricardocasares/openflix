@@ -5,10 +5,10 @@
         span {{ movie.release_date.split('-')[0] }}
         h1 {{ movie.title }}
         h2 {{ movie.tagline }}
-
-.player(ng-show="playing")
-  video(controls)
-    source(src="http://techslides.com/demos/sample-videos/small.mp4", type="video/mp4")
+  .container(ng-show="playing", class="slide")
+    .row
+      video(controls).col-lg-12
+        source(src="http://techslides.com/demos/sample-videos/small.webm", type="video/mp4")
 
 .container.movie-data
   .row
@@ -25,9 +25,9 @@
           button(type="button", ng-click="subtitles = !subtitles").btn.btn-sm.btn-default
             i(ng-show="subtitles").fa.fa-toggle-on
             i(ng-hide="subtitles").fa.fa-toggle-off
-            |  Subtitles 
-            span(ng-show="subtitles").text-muted {{ selectedSubtitle.iso_639_1.toUpperCase() }}
-            span(ng-hide="subtitles").text-muted Off
+            |  Subtitles
+            span(ng-show="subtitles").text-muted  {{ selectedSubtitle.iso_639_1.toUpperCase() }}
+            span(ng-hide="subtitles").text-muted  Off
           button(type="button", data-toggle="dropdown").btn.btn-sm.btn-default.dropdown-toggle
             i.fa.fa-caret-down
           ul.dropdown-menu
@@ -35,31 +35,39 @@
               a(href="#", ng-click="selectSubtitle($index)") {{ lang.name }}
         .btn-group
           button(type="button").btn.btn-sm.btn-default
-            | Quality 
-            span.text-muted{{ selectedTorrent.Quality }}
+            | Quality
+            span.text-muted  {{ selectedTorrent.Quality }}
           button(type="button", data-toggle="dropdown").btn.btn-sm.btn-default.dropdown-toggle
             i.fa.fa-caret-down
           ul.dropdown-menu
             li(ng-repeat="t in movie.torrents", ng-click="selectTorrent($index)")
               a(href="#") {{ t.Quality }}
-        .btn-group.pull-right
-          button(type="button", ng-click="favourite = !favourite").btn.btn-sm.btn-default
-            i(ng-show="favourite").fa.fa-fw.fa-heart
-            i(ng-hide="favourite").fa.fa-fw.fa-heart-o
-            |  Favorites
+        .btn-group.pull-right(ng-if="movie.inFavs")
+          button(type="button", ng-click="removeFromFavs()").btn.btn-sm.btn-default
+            i.fa.fa-fw.fa-heart
+            |  Remove from favs
+        .btn-group.pull-right(ng-if="!movie.inFavs")
+          button(type="button", ng-click="addToFavs()").btn.btn-sm.btn-default
+            i.fa.fa-fw.fa-heart-o
+            |  Add to favorites
         .btn-group.pull-right
           button(type="button").btn.btn-sm.btn-default
             i.fa.fa-fw.fa-link
             |  Share
       hr
   .row
-    .col-lg-12
+    .col-lg-6
       p
-        strong Year 
-        span.text-muted {{ movie.release_date.split('-')[0] }} 
-        strong Runtime 
-        span.text-muted {{ movie.runtime }}min 
-        strong Genres 
-        a(href="/genres/{{ g.name | slugify }}/{{ g.id }}", ng-repeat="g in movie.genres").text-muted {{ g.name }} 
+        strong Year
+        span.text-muted  {{ movie.release_date.split('-')[0] }}
+        strong  Runtime
+        span.text-muted  {{ movie.runtime }}min
+    .col-lg-6
+      ul.list-inline.pull-right
+        li
+          strong Genres
+        li(ng-repeat="g in movie.genres")
+          a(href="/genres/{{ g.name | slugify }}/{{ g.id }}").text-muted {{ g.name }}
+    .col-lg-12
       p.overview {{ movie.overview }}
-       
+

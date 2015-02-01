@@ -29,7 +29,8 @@
     "angular-slugify": "~1.0.0",
     "videogular": "~0.6.0",
     "videogular-poster": "~0.6.0",
-    "videogular-themes-default": "~0.6.0"
+    "videogular-themes-default": "~0.6.0",
+    "ngstorage": "~0.3.0"
   },
   "license": "MIT",
   "private": true,

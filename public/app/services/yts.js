@@ -5,7 +5,7 @@ angular.module('openflix')
     yts.base = 'https://yts.re/api';
 
     yts.list = function() {
-      return $http.get(yts.base + '/list.json')
+      return $http.get(yts.base + '/list.json', {cache: true})
         .success(function(result){
           return result.MovieList;
         });
@@ -15,12 +15,13 @@ angular.module('openflix')
       return $http.get(yts.base + '/listimdb.json', {
           params: {
             imdb_id: id
-          }
+          },
+          cache: true
         })
         .success(function(result){
           return result.MovieList;
         });
     };
-    
+
     return yts;
   });

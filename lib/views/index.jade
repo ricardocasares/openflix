@@ -13,7 +13,7 @@ head()
   link(rel='stylesheet', href='/bower/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='/bower/fontawesome/css/font-awesome.min.css')
   link(rel='stylesheet', href='/css/openflix.css')
-  // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries 
+  // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
   //if lt IE 9
     script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.0/html5shiv.js")
     script(src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js")
@@ -28,35 +28,37 @@ body(ng-app="openflix")
           span.icon-bar
         a(href="/" ).navbar-brand {{title}}
       .collapse.navbar-collapse.navbar-ex1-collapse
-        ul.nav.navbar-nav 
+        ul.nav.navbar-nav
           li.active: a(href="/movies") Popular
-          li: a(href="#") Favorites
+          li: a(href="/favorites") Favorites
           li.dropdown
             a(href="#",data-toggle="dropdown").dropdown-toggle
-              | Genres 
+              | Genres
               i.fa.fa-fw.fa-caret-down
             ul.dropdown-menu
               li(ng-repeat="g in genres")
                 a(href="/genres/{{ g.name | slugify }}/{{g.id}}") {{ g.name }}
-        form(role="search").navbar-form.navbar-right
-          .form-group 
-            input(type="text", placeholder="Search").form-control
+        form(role="search", ng-submit="search(query)").navbar-form.navbar-right
+          .form-group
+            input(type="text", placeholder="Search", ng-model="query").form-control
   .outlet(ng-view)
   script(src="/bower/jquery/dist/jquery.min.js")
   script(src="/bower/bootstrap/dist/js/bootstrap.min.js")
-  script(src="/bower/angular/angular.min.js")
+  script(src="/bower/angular/angular.js")
   script(src="/bower/angular-sanitize/angular-sanitize.min.js")
   script(src="/bower/angular-route/angular-route.min.js")
   script(src="/bower/angular-loading-bar/build/loading-bar.min.js")
   script(src="/bower/angular-animate/angular-animate.min.js")
   script(src="/bower/angular-bootstrap/ui-bootstrap-tpls.min.js")
-  script(src="/bower/videogular/videogular.min.js")
-  script(src="/bower/videogular-poster/poster.min.js")
+  script(src="/bower/ngstorage/ngStorage.min.js")
   script(src="/bower/angular-slugify/angular-slugify.js")
   script(src="/app/main.js")
+  script(src="/app/directives/movie-collection/movie-collection.js")
+  script(src="/app/filters/capitalize.js")
   script(src="/app/controllers/nav.js")
   script(src="/app/controllers/movies.js")
   script(src="/app/controllers/movie.js")
+  script(src="/app/services/favorites.js")
   script(src="/app/services/tmdb.js")
   script(src="/app/services/yts.js")
   script(src="/app/animations/slide.js")
