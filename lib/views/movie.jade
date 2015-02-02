@@ -8,7 +8,7 @@
   .container(ng-hide="playing", class="slide")
     .row
       video(controls).col-lg-12
-        source(src="/pulp.mp4", type="video/mp4")
+        source(src="http://techslides.com/demos/sample-videos/small.mp4", type="video/mp4")
         track(ng-if="subtitles", ng-repeat="track in subtitleTracks", src="{{track.url}}", kind="subtitle", srclang="{{track.srclang}}", label="{{track.label}}")
 
 .container.movie-data
