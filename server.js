@@ -31,7 +31,7 @@ app.get('/api/subs/:zip', function(req, res) {
             res.send(captions.vtt.generate(captions.srt.toJSON(data)));
           });
         } catch(e) {
-          res.json({ error: 'No can do!'});
+          console.log('Error getting subtitle file: ' + req.params.zip, e);
         }
 
       });
