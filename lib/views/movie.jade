@@ -5,10 +5,11 @@
         span {{ movie.release_date.split('-')[0] }}
         h1 {{ movie.title }}
         h2 {{ movie.tagline }}
-  .container(ng-show="playing", class="slide")
+  .container(ng-hide="playing", class="slide")
     .row
       video(controls).col-lg-12
-        source(src="http://techslides.com/demos/sample-videos/small.webm", type="video/mp4")
+        source(src="/pulp.mp4", type="video/mp4")
+        track(ng-if="subtitles", ng-repeat="track in subtitleTracks", src="{{track.url}}", kind="subtitle", srclang="{{track.srclang}}", label="{{track.label}}")
 
 .container.movie-data
   .row
@@ -18,54 +19,46 @@
         |  This movie is not yet available
       .btn-toolbar(ng-show="movie.torrents")
         .btn-group
-          button(type="button", ng-click="playing = !playing").btn.btn-sm.btn-default
+          button(type="button", ng-click="playing = !playing").btn.btn-default
             i.fa.fa-play.fa-fw
             |  Play movie
+          button(ng-if="movie.inFavs", type="button", ng-click="removeFromFavs()", title="Remove from favorites").btn.btn-default
+            i.fa.fa-fw.fa-heart.red-heart
+          button(ng-if="!movie.inFavs", type="button", ng-click="addToFavs()", title="Save to favorites").btn.btn-default
+            i.fa.fa-fw.fa-heart-o
         .btn-group
-          button(type="button", ng-click="subtitles = !subtitles").btn.btn-sm.btn-default
-            i(ng-show="subtitles").fa.fa-toggle-on
-            i(ng-hide="subtitles").fa.fa-toggle-off
-            |  Subtitles
-            span(ng-show="subtitles").text-muted  {{ selectedSubtitle.iso_639_1.toUpperCase() }}
+          button(type="button", ng-click="subtitles = !subtitles").btn.btn-default
+            i(ng-show="subtitles").fa.fa-cc
+            i(ng-hide="subtitles").fa.fa-cc.text-muted
+            span(ng-show="subtitles").text-muted  {{ selectedSubtitle }}
             span(ng-hide="subtitles").text-muted  Off
-          button(type="button", data-toggle="dropdown").btn.btn-sm.btn-default.dropdown-toggle
+          button(type="button", data-toggle="dropdown").btn.btn-default.dropdown-toggle
             i.fa.fa-caret-down
-          ul.dropdown-menu
-            li(ng-repeat="lang in movie.spoken_languages")
-              a(ng-click="selectSubtitle($index)") {{ lang.name }}
+          ul.dropdown-menu.pull-right
+            li(ng-repeat-start="(lang, subs) in movie.subtitles").dropdown-header
+              | {{ lang | capitalize }}
+              li(ng-repeat="sub in subs")
+                a(ng-click="selectSubtitle(lang, $index)") {{lang | capitalize }} {{$index +1}}
+            li(ng-repeat-end="")
         .btn-group
-          button(type="button").btn.btn-sm.btn-default
-            | Quality
-            span.text-muted  {{ selectedTorrent.Quality }}
-          button(type="button", data-toggle="dropdown").btn.btn-sm.btn-default.dropdown-toggle
+          button(type="button").btn.btn-default
+            i.fa.fa-fw.fa-video-camera
+            span.text-muted.hidden-xs  {{ selectedTorrent.Quality }}
+          button(type="button", data-toggle="dropdown").btn.btn-default.dropdown-toggle
             i.fa.fa-caret-down
-          ul.dropdown-menu
+          ul.dropdown-menu.pull-right
             li(ng-repeat="t in movie.torrents", ng-click="selectTorrent($index)")
               a {{ t.Quality }}
-        .btn-group.pull-right(ng-if="movie.inFavs")
-          button(type="button", ng-click="removeFromFavs()").btn.btn-sm.btn-default
-            i.fa.fa-fw.fa-heart
-            |  Remove from favs
-        .btn-group.pull-right(ng-if="!movie.inFavs")
-          button(type="button", ng-click="addToFavs()").btn.btn-sm.btn-default
-            i.fa.fa-fw.fa-heart-o
-            |  Add to favorites
-        .btn-group.pull-right
-          button(type="button").btn.btn-sm.btn-default
-            i.fa.fa-fw.fa-link
-            |  Share
       hr
   .row
-    .col-lg-6
-      p
-        strong Year
-        span.text-muted  {{ movie.release_date.split('-')[0] }}
-        strong  Runtime
-        span.text-muted  {{ movie.runtime }}min
-    .col-lg-6
-      ul.list-inline.pull-right
-        li
-          strong Genres
+    .col-lg-12
+      ul.list-inline
+        li: strong Year
+        li: span.text-muted  {{ movie.release_date.split('-')[0] }}
+        li: strong Runtime
+        li: span.text-muted  {{ movie.runtime }}min
+      ul.list-inline
+        li: strong Genres
         li(ng-repeat="g in movie.genres")
           a(href="/genres/{{ g.name | slugify }}/{{ g.id }}").text-muted {{ g.name }}
     .col-lg-12

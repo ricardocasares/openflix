@@ -8,6 +8,7 @@ angular
     'ui.bootstrap'
   ])
   .constant('TMDBAPI','a21723b09e32b44cfbea649fe81ea9c7')
+  .constant('SSAPI','954f62bffd117187da50a243f981c7d9a50c1153')
   .config(function($routeProvider, $locationProvider){
     $routeProvider
       .when('/movies', {
@@ -50,18 +51,23 @@ angular
         controller: 'MovieController',
         templateUrl: '/views/movie',
         resolve: {
-          movie: function(tmDB, yts, favService, $route) {
+          movie: function(tmDB, yts, favService, subService, $route) {
             return tmDB
               .movie($route.current.params.tmdb)
               .then(function(movie){
                 movie.data.inFavs = favService.check(movie.data.imdb_id);
                 return yts.find(movie.data.imdb_id)
                   .then(function(torrents){
-                  movie.data.torrents = false;
-                  if(!torrents.data.error) {
-                    movie.data.torrents = torrents.data.MovieList;
-                  }
-                  return movie.data;
+                    movie.data.torrents = false;
+                    if(!torrents.data.error) {
+                      movie.data.torrents = torrents.data.MovieList;
+                    }
+                    return subService
+                      .get(movie.data.imdb_id)
+                      .then(function (subs) {
+                        movie.data.subtitles = subs.data.subs[movie.data.imdb_id];
+                        return movie.data;
+                      });
                 });
               });
           }

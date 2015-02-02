@@ -10,7 +10,7 @@ head()
   meta(name='viewport', content='width=device-width,initial-scale=1')
   base(href="/")
   title OpenFlix
-  link(rel='stylesheet', href="/bower/angular-loading-bar/build/loading-bar.css")
+  link(rel='stylesheet', href='/bower/angular-loading-bar/build/loading-bar.css')
   link(rel='stylesheet', href='/bower/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='/bower/fontawesome/css/font-awesome.min.css')
   link(rel='stylesheet', href='/css/openflix.css')
@@ -33,12 +33,12 @@ body(ng-app="openflix")
           li: a(href="/movies") Popular
           li: a(href="/favorites") Favorites
           li.dropdown
-            a(data-toggle="dropdown").dropdown-toggle
+            a(href="#", data-toggle="dropdown").dropdown-toggle
               | Genres
               i.fa.fa-fw.fa-caret-down
             ul.dropdown-menu
               li(ng-repeat="g in genres")
-                a(href="/genres/{{ g.name | slugify }}/{{g.id}}") {{ g.name }}
+                a(ng-href="/genres/{{ g.name | slugify }}/{{g.id}}") {{ g.name }}
         form(role="search", ng-submit="search(query)").navbar-form.navbar-right
           .form-group
             input(type="text", placeholder="Search", ng-model="query").form-control
@@ -61,4 +61,5 @@ body(ng-app="openflix")
   script(src="/app/services/favorites.js")
   script(src="/app/services/tmdb.js")
   script(src="/app/services/yts.js")
+  script(src="/app/services/subs.js")
   script(src="/app/animations/slide.js")
