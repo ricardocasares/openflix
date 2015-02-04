@@ -1,6 +1,6 @@
 .carousel
   carousel(interval="5000")
-    slide(ng-repeat="movie in movies", active="movie.active", ng-if="movie.backdrop_path")
+    slide(ng-repeat="movie in mvVm.movies", active="movie.active", ng-if="movie.backdrop_path")
       img(ng-src="http://image.tmdb.org/t/p/w780/{{movie.backdrop_path}}")
       .carousel-caption
         h2
@@ -14,6 +14,6 @@
 .container.container-movie
   .row
     .col-lg-12
-      h2.page-header {{ title | capitalize}}
+      h2.page-header {{ mvVm.title | capitalize}}
 
-movie-collection(collection="movies")
+movie-collection(collection="mvVm.movies")

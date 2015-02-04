@@ -11,7 +11,7 @@ angular
     };
 
     fav.get = function() {
-      return { data: { results: $localStorage.favoritesCollection }};
+      return $localStorage.favoritesCollection;
     };
 
     fav.remove = function(movie) {

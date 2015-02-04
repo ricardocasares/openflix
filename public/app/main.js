@@ -13,18 +13,18 @@ angular
     $routeProvider
       .when('/movies', {
         controller: 'MoviesController',
+        controllerAs: 'mvVm',
         templateUrl: '/views/movies',
         resolve: {
           title: function() {
             return 'Popular';
           },
-          collection: function(tmDB) {
-            return tmDB.popular();
-          }
+          collection: moviesResolver
         }
       })
       .when('/favorites', {
         controller: 'MoviesController',
+        controllerAs: 'mvVm',
         templateUrl: '/views/movies',
         resolve: {
           title: function() {
@@ -75,19 +75,29 @@ angular
       })
       .when('/genres/:slug/:id', {
         controller: 'MoviesController',
+        controllerAs: 'mvVm',
         templateUrl: '/views/movies',
         resolve: {
           title: function($route) {
             return $route.current.params.slug;
           },
-          collection: function(tmDB, $route) {
-            return tmDB.genre($route.current.params.id);
+          collection: function($route, MockMovieSvc) {
+            return MockMovieSvc.getByGenre($route.current.params.id);
           }
         }
       })
       .otherwise({ redirectTo: '/movies'});
     $locationProvider.html5Mode(true);
   })
-  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.includeSpinner = false;
-  }]);
+  .config(['cfpLoadingBarProvider', CfpLoadingBar]);
+
+
+CfpLoadingBar.$inject = ['cfpLoadingBarProvider'];
+function CfpLoadingBar(cfpLoadingBarProvider) {
+  cfpLoadingBarProvider.includeSpinner = false;
+}
+
+moviesResolver.$inject = ['MockMovieSvc'];
+function moviesResolver (MockMovieSvc) {
+  return MockMovieSvc.getPopular();
+}

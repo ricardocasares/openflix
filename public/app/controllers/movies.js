@@ -1,7 +1,15 @@
-angular
-  .module('openflix')
-  .controller('MoviesController', function($scope, collection, title, $routeParams) {
-    $scope.title = title;
-    $scope.movies = collection.data.results;
-    $scope.movies.active = 0;
-  });
+(function () {
+  'use strict';
+  angular
+    .module('openflix')
+    .controller('MoviesController', MoviesCtrl);
+
+  MoviesCtrl.$inject = ['title', '$routeParams', 'collection'];
+
+  function MoviesCtrl(title, $routeParams, collection) {
+    var vm = this;
+    vm.title = title;
+    vm.movies = collection;
+    vm.movies.active = 0;
+  }
+})();
