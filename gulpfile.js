@@ -12,7 +12,7 @@ var wiredep = require('wiredep').stream;
 var files = {
   js: {
     src: ['./src/app/**/*.js'],
-    dst: './build/app/'
+    dst: './build/'
   },
   less: {
     src: ['./src/less/*.less'],

@@ -6,10 +6,10 @@
 
   function routing($routeProvider) {
 
-    $routeProvider.when('/movie/:slug/:id', {
+    $routeProvider.when('/movie', {
       controller: 'MovieCtrl',
       controllerAs: 'MovieVM',
-      templateUrl: 'movie.html',
+      templateUrl: '../app/features/movie/movie.html',
       resolve: {
         movie: ResolveMovie
       }

@@ -3,3 +3,4 @@ logs
 *.sublime*
 node_modules
 src/bower_components
+build
