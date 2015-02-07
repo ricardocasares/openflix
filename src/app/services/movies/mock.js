@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-    .module('openflix')
+    .module('of.services.movies', [])
     .service('MockMovieSvc', MockMovieSvc);
 
   /**
@@ -12,6 +12,10 @@
 
   function MockMovieSvc() {
 
+    /**
+     * service object
+     * @type {Object}
+     */
     var service = {
       getGenres: getGenres,
       getPopular: getPopular,
@@ -23,6 +27,10 @@
 
     //////////////
 
+    /**
+     * returns an array of movie genres
+     * @return {Array} Genres array
+     */
     function getGenres() {
       return genres;
     }

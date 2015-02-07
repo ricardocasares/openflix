@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="openflix" ng-controller="AppCtrl as appVm">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body>
+  <h1>{{appVm.title}}</h1>
+  <ng-view></ng-view>
+  <!-- build:bower bower.js-->
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
+  <script src="bower_components/angular-slugify/angular-slugify.js"></script>
+  <script src="bower_components/ngstorage/ngStorage.js"></script>
+  <script src="bower_components/bootstrap-submenu/dist/js/bootstrap-submenu.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!-- endinject -->
+  <!-- endbuild -->
+  <!-- build:js openflix.js -->
+  <!-- inject:js -->
+  <script src="app/services/movies/mock.js"></script>
+  <script src="app/features/navigation/nav.module.js"></script>
+  <script src="app/features/navigation/nav.controller.js"></script>
+  <script src="app/features/movies/movies.module.js"></script>
+  <script src="app/features/movies/movies.controller.js"></script>
+  <script src="app/features/movie/movie.module.js"></script>
+  <script src="app/features/movie/movie.controller.js"></script>
+  <script src="app/main.js"></script>
+  <!-- endinject -->
+  <!-- endbuild -->
+  <script src="templates.js"></script>
+</body>
+</html>
