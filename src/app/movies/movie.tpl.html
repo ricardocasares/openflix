@@ -57,7 +57,7 @@
       </ul>
       <ul class="list-inline">
         <li><strong>Genres</strong></li>
-        <li ng-repeat="g in mvVm.movie.genres"><a href="/genres/{{ g.name | slugify }}/{{ g.id }}" class="text-muted">{{ g.name }}</a></li>
+        <li ng-repeat="g in mvVm.movie.genres"><a href="/genre/{{ g.name | slugify }}/{{ g.id }}" class="text-muted">{{ g.name }}</a></li>
       </ul>
     </div>
     <div class="col-lg-12">
