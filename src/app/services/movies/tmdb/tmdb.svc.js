@@ -102,7 +102,7 @@
         }
       })
         .success(function(data) {
-          deferred.resolve(normalizeMovie(data[id]));
+          deferred.resolve(normalizeMovie(data.results));
         });
       return deferred.promise;
     }

@@ -22,11 +22,24 @@
         resolve: {
           item: ResolveItem,
         }
+      })
+      .when('/genre/:slug/:id', {
+        controller: 'MoviesCtrl',
+        controllerAs: 'mvsVm',
+        templateUrl: '/app/movies/movies.tpl.html',
+        resolve: {
+          collection: ResolveGenre,
+        }
       });
 
     ResolveCollection.$inject = ['MovieSvc'];
     function ResolveCollection(MovieSvc) {
       return MovieSvc.getPopular();
+    }
+
+    ResolveGenre.$inject = ['MovieSvc', '$route'];
+    function ResolveGenre(MovieSvc, $route) {
+      return MovieSvc.getByGenre($route.current.params.id);
     }
 
     ResolveItem.$inject = ['MovieSvc', '$route'];

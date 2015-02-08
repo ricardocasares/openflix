@@ -65,7 +65,7 @@
      * @return {Array}  Movie array
      */
     function getByGenre(id) {
-      return instance.getGenre(id);
+      return instance.getByGenre(id);
     }
 
   }

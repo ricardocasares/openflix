@@ -15,12 +15,12 @@
           <a href="/">Movies</a>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="dropdown-toggle">
             Genres <i class="fa fa-fw fa-caret-down"></i>
           </a>
           <ul class="dropdown-menu">
             <li ng-repeat="genre in navVm.genres">
-              <a href="#" title="">{{ genre.name }}</a>
+              <a ng-href="/genre/{{ genre.name | slugify }}/{{ genre.id }}" title="">{{ genre.name }}</a>
             </li>
           </ul>
         </li>
