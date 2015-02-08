@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-    .module('of.movies', ['of.services.movies'])
+    .module('of.movies', ['of.services.movies', 'of.services.torrents'])
     .config(routing);
 
   function routing($routeProvider) {

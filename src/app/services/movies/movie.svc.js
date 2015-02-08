@@ -25,7 +25,8 @@
       getGenres: getGenres,
       getPopular: getPopular,
       getById: getById,
-      getByGenre: getByGenre
+      getByGenre: getByGenre,
+      getMovieTorrents: getMovieTorrents
     };
 
     return service;
@@ -38,6 +39,16 @@
      */
     function getGenres() {
       return instance.getGenres();
+    }
+
+    /**
+     * returns an array of torrents for
+     * a given movie id
+     * @param  {Number} id Movie imdb id
+     * @return {Array}     Torrents array
+     */
+    function getMovieTorrents(id) {
+      return instance.getMovieTorrents(id);
     }
 
     /**
@@ -61,11 +72,31 @@
     /**
      * returns a collection of movies
      * by a given genre
-     * @param  {int} id Genre
+     * @param  {Number} id Genre
      * @return {Array}  Movie array
      */
     function getByGenre(id) {
       return instance.getByGenre(id);
+    }
+
+    /**
+     * returns an array of torrents for
+     * a given movie id
+     * @param  {String} id movie imdb id
+     * @return {Array}     Torrents array
+     */
+    function getTorrents(id) {
+      return instance.getTorrents(id);
+    }
+
+    /**
+     * returns an array of subtitles for
+     * a given movie id
+     * @param  {String} id movie imdb id
+     * @return {Array}     Subtitle array
+     */
+    function getSubtitles(id) {
+      return instance.getSubtitles(id);
     }
 
   }

@@ -1,7 +1,10 @@
 (function() {
   'use strict';
   angular
-    .module('of.services.movies.tmdb', ['of.common.utils'])
+    .module('of.services.movies.tmdb', [
+      'of.common.utils',
+      'of.services.torrents',
+    ])
     .constant('TMDBAPI', {
       svc: 'http://api.themoviedb.org/3',
       endpoints: {
@@ -17,8 +20,8 @@
   /**
    * TMDB API service
    */
-  TmdbMovieSvc.$inject = ['normalize', '$http', '$q', 'TMDBAPI', 'TMDB_APIKEY'];
-  function TmdbMovieSvc(normalize, $http, $q, TMDBAPI, TMDB_APIKEY) {
+  TmdbMovieSvc.$inject = ['normalize', '$http', '$q', 'TorrentSvc', 'TMDBAPI', 'TMDB_APIKEY'];
+  function TmdbMovieSvc(normalize, $http, $q, TorrentSvc, TMDBAPI, TMDB_APIKEY) {
 
     /**
      * service object
@@ -28,7 +31,8 @@
       getGenres: getGenres,
       getPopular: getPopular,
       getById: getById,
-      getByGenre: getByGenre
+      getByGenre: getByGenre,
+      getMovieTorrents: getMovieTorrents
     };
 
     return service;
@@ -52,6 +56,10 @@
       return deferred.promise;
     }
 
+    function getMovieTorrents(id) {
+      return TorrentSvc.getTorrentsByMovieId(id);
+    }
+
     /**
      * returns the nth most popular
      * torrents
@@ -65,7 +73,7 @@
         }
       })
         .success(function(data) {
-          deferred.resolve(normalizeMovie(data.results));
+          deferred.resolve(normalizeData(data.results));
         });
       return deferred.promise;
     }
@@ -83,7 +91,7 @@
         }
       })
         .success(function(data) {
-          deferred.resolve(normalizeMovie(data));
+          deferred.resolve(normalizeData(data));
         });
       return deferred.promise;
     }
@@ -102,15 +110,15 @@
         }
       })
         .success(function(data) {
-          deferred.resolve(normalizeMovie(data.results));
+          deferred.resolve(normalizeData(data.results));
         });
       return deferred.promise;
     }
 
-    function normalizeMovie(target) {
+    function normalizeData(target) {
       // map for movie data
       var map = {
-        id: 'id',
+        id: 'imdb_id',
         title: 'title',
         tagline: 'tagline',
         poster: 'backdrop_path',
@@ -122,9 +130,10 @@
         genres: 'genres',
         overview: 'overview',
       };
+      var normalized = [];
 
       if(target instanceof Array) {
-        var normalized = [];
+        map.id = 'id';
         angular.forEach(target, function(obj) {
           normalized.push(normalize(map, obj));
         });

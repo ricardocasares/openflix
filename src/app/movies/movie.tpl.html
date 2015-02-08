@@ -7,26 +7,24 @@
       </div>
     </div>
   </div>
-  <div ng-if="false" class="container slide">
-    <div class="row">
-      <video controls="controls" class="col-lg-12">
-        <source src="http://www.tools4movies.com/trailers/samples/Django%20Unchained.mp4" type="video/mp4"/>
-        <track ng-if="subtitles" ng-repeat="track in subtitleTracks" src="{{track.url}}" kind="subtitle" srclang="{{track.srclang}}" label="{{track.label}}"/>
-      </video>
-    </div>
-  </div>
 </div>
 <div class="container movie-data">
   <div class="row">
+    <video ng-show="playing" controls="controls" class="col-lg-12">
+      <source src="http://www.tools4movies.com/trailers/samples/Django%20Unchained.mp4" type="video/mp4"/>
+      <track ng-if="subtitles" ng-repeat="track in subtitleTracks" src="{{track.url}}" kind="subtitle" srclang="{{track.srclang}}" label="{{track.label}}"/>
+    </video>
     <div class="col-lg-12">
-      <div ng-hide="movie.torrents" class="alert alert-info"><i class="fa fa-fw fa-warning"></i> This movie is not yet available</div>
-      <div ng-show="movie.torrents" class="btn-toolbar">
+      <hr>
+      <div ng-show="mvVm.torrents === 'lookup'" class="alert alert-info"><i class="fa fa-fw fa-spin fa-circle-o-notch"></i> Looking for torrents...</div>
+      <div ng-hide="mvVm.torrents" class="alert alert-warning"><i class="fa fa-fw fa-warning"></i> Sorry, there are no torrents available for this movie yet</div>
+      <div ng-show="mvVm.movie.torrents" class="btn-toolbar">
         <div class="btn-group">
           <button type="button" ng-click="playing = !playing" class="btn btn-default"><i class="fa fa-play fa-fw"></i> Play movie</button>
           <button ng-if="movie.inFavs" type="button" ng-click="removeFromFavs()" title="Remove from favorites" class="btn btn-default"><i class="fa fa-fw fa-heart red-heart"></i></button>
           <button ng-if="!movie.inFavs" type="button" ng-click="addToFavs()" title="Save to favorites" class="btn btn-default"><i class="fa fa-fw fa-heart-o"></i></button>
         </div>
-        <div class="btn-group">
+        <div class="btn-group" ng-if="mvVm.movie.subtitles">
           <button type="button" ng-click="subtitles = !subtitles" class="btn btn-default"><i ng-show="subtitles" class="fa fa-cc"></i><i ng-hide="subtitles" class="fa fa-cc text-muted"></i><span ng-show="subtitles" class="text-muted"> {{ selectedSubtitle }}</span><span ng-hide="subtitles" class="text-muted"> Off</span></button>
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><i class="fa fa-caret-down"></i></button>
           <ul class="dropdown-menu pull-right">
@@ -40,7 +38,7 @@
           <button type="button" class="btn btn-default"><i class="fa fa-fw fa-video-camera"></i><span class="text-muted hidden-xs"> {{ selectedTorrent.Quality }}</span></button>
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><i class="fa fa-caret-down"></i></button>
           <ul class="dropdown-menu pull-right">
-            <li ng-repeat="t in movie.torrents" ng-click="selectTorrent($index)"><a>{{ t.Quality }}</a></li>
+            <li ng-repeat="t in mvVm.movie.torrents" ng-click="selectTorrent($index)"><a>{{ t.quality }}</a></li>
           </ul>
         </div>
       </div>
