@@ -24,7 +24,6 @@
     //////////////
 
     MovieSvc.getGenres().then(function(data){
-      console.log(data);
       vm.genres = data;
     });
 

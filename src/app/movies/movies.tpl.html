@@ -4,7 +4,7 @@
       <img ng-src="http://image.tmdb.org/t/p/w780/{{movie.poster}}" alt="{{movie.title}}">
       <div class="carousel-caption">
         <h2>
-          <a ng-href="/movies/{{ movie.title | slugify }}/{{ $index }}">{{ movie.title }}</a>
+          <a ng-href="/movies/{{ movie.title | slugify }}/{{ movie.id }}">{{ movie.title }}</a>
         </h2>
         <p class="movie-ration">
           <i class="fa fa-fw fa-star"></i>
