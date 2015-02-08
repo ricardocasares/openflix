@@ -8,11 +8,9 @@
   /**
    * Movies controller
    */
-  MoviesCtrl.$inject = ['title', 'collection'];
-  function MoviesCtrl(title, collection) {
+  MoviesCtrl.$inject = ['collection'];
+  function MoviesCtrl(collection) {
     var vm = this;
-    vm.title = title;
     vm.movies = collection;
-    vm.movies.active = 0;
   }
 })();

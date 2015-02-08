@@ -1,0 +1,18 @@
+<div class="carousel">
+  <carousel interval="5000">
+    <slide ng-repeat="movie in mvsVm.movies" ng-if="movie.poster">
+      <img ng-src="http://image.tmdb.org/t/p/w780/{{movie.poster}}" alt="{{movie.title}}">
+      <div class="carousel-caption">
+        <h2>
+          <a ng-href="/movies/{{ movie.title | slugify }}/{{ $index }}">{{ movie.title }}</a>
+        </h2>
+        <p class="movie-ration">
+          <i class="fa fa-fw fa-star"></i>
+          {{ movie.voteAverage }}
+          <i class="fa fa-fw fa-thumbs-up"></i>
+          {{ movie.voteCount }}
+        </p>
+      </div>
+    </slide>
+  </carousel>
+</div>

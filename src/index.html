@@ -3,22 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <!-- inject:css -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>openflix</title>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <!-- build:css /openflix.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
+  <link rel="stylesheet" href="bower_components/angular-hotkeys/build/hotkeys.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="less/openflix.css">
+  <!-- endinject -->
+  <!-- endbuild -->
+  <style>
+  </style>
 </head>
-<body>
-  <h1>{{appVm.title}}</h1>
-  <ul>
-    <li>
-      <a href="/movie">Movie</a>
-    </li>
-    <li>
-      <a href="/movies">Movies</a>
-    </li>
-  </ul>
-  <ng-view></ng-view>
-  <!-- build:bower bower.js-->
+<body ng-cloak>
+  <!-- navigation -->
+  <of-navigation></of-navigation>
+  <!-- main outlet -->
+  <div ng-view ng-cloak></div>
+
+  <!-- build:bower /bower.js-->
   <!-- bower:js -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
@@ -30,22 +38,22 @@
   <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
   <script src="bower_components/angular-slugify/angular-slugify.js"></script>
   <script src="bower_components/ngstorage/ngStorage.js"></script>
-  <script src="bower_components/bootstrap-submenu/dist/js/bootstrap-submenu.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <!-- endinject -->
   <!-- endbuild -->
-  <!-- build:js openflix.js -->
+  <!-- build:openflix /openflix.js -->
   <!-- inject:js -->
-  <script src="app/services/movies/mock.js"></script>
-  <script src="app/features/navigation/nav.module.js"></script>
-  <script src="app/features/navigation/nav.controller.js"></script>
-  <script src="app/features/movies/movies.module.js"></script>
-  <script src="app/features/movies/movies.controller.js"></script>
-  <script src="app/features/movie/movie.module.js"></script>
-  <script src="app/features/movie/movie.controller.js"></script>
-  <script src="app/main.js"></script>
+  <script src="app/services/movies/mock-service/mock.svc.js"></script>
+  <script src="app/services/movies/movie.svc.js"></script>
+  <script src="app/navigation/nav.module.js"></script>
+  <script src="app/navigation/nav.directive.js"></script>
+  <script src="app/movies/movies.module.js"></script>
+  <script src="app/movies/movies.ctrl.js"></script>
+  <script src="app/movies/movie.ctrl.js"></script>
+  <script src="app/common/utils.js"></script>
+  <script src="app/app.js"></script>
   <!-- endinject -->
   <!-- endbuild -->
-  <script src="templates.js"></script>
+  <script src="/templates.js"></script>
 </body>
 </html>

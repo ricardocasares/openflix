@@ -8,8 +8,7 @@
     'slugifier',
     'ui.bootstrap',
     'of.navigation',
-    'of.movies',
-    'of.movie'
+    'of.movies'
   ])
   .constant('TMDBAPI','a21723b09e32b44cfbea649fe81ea9c7')
   .constant('SSAPI','954f62bffd117187da50a243f981c7d9a50c1153')
@@ -18,17 +17,22 @@
   .controller('AppCtrl', AppCtrl);
 
   function routing($routeProvider, $locationProvider) {
+    $locationProvider
+      .html5Mode(true);
     $routeProvider
       .otherwise({ redirectTo: '/'});
-    $locationProvider.html5Mode(true);
   }
 
   function loadingBar(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
   }
 
-  function AppCtrl() {
+  AppCtrl.$inject = ['$scope'];
+  function AppCtrl($scope) {
+
     var vm = this;
-    vm.title = 'This';
+
+    vm.appname = 'openflix';
+
   }
 })();
