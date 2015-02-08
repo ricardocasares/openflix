@@ -1,16 +1,24 @@
 (function() {
   'use strict';
   angular
-    .module('of.services.movies.mock', ['of.common.utils'])
-    .service('MockMovieSvc', MockMovieSvc);
+    .module('of.services.movies.tmdb', ['of.common.utils'])
+    .constant('TMDBAPI', {
+      svc: 'http://api.themoviedb.org/3',
+      endpoints: {
+        movie: '/movie/:id',
+        latest: '/movie/latest',
+        popular: '/movie/popular',
+        genres: '/genre/movie/list',
+        moviesByGenre: '/genre/:id/movies'
+      }
+    })
+    .service('TmdbMovieSvc', TmdbMovieSvc);
 
   /**
-   * Fake movie API service
-   * @type {Object}
+   * TMDB API service
    */
-  MockMovieSvc.$inject = ['normalize', '$http', '$q'];
-
-  function MockMovieSvc(normalize, $http, $q) {
+  TmdbMovieSvc.$inject = ['normalize', '$http', '$q', 'TMDBAPI', 'TMDB_APIKEY'];
+  function TmdbMovieSvc(normalize, $http, $q, TMDBAPI, TMDB_APIKEY) {
 
     /**
      * service object
@@ -33,9 +41,13 @@
      */
     function getGenres() {
       var deferred = $q.defer();
-      $http.get('/stubs/genres.json')
+      $http.get(TMDBAPI.svc + TMDBAPI.endpoints.genres, {
+        params: {
+          api_key: TMDB_APIKEY
+        }
+      })
         .success(function(data) {
-          deferred.resolve(data);
+          deferred.resolve(data.genres);
         });
       return deferred.promise;
     }
@@ -47,9 +59,13 @@
      */
     function getPopular() {
       var deferred = $q.defer();
-      $http.get('/stubs/movies.json')
+      $http.get(TMDBAPI.svc + TMDBAPI.endpoints.popular, {
+        params: {
+          api_key: TMDB_APIKEY
+        }
+      })
         .success(function(data) {
-          deferred.resolve(normalizeIt(data));
+          deferred.resolve(normalizeMovie(data.results));
         });
       return deferred.promise;
     }
@@ -61,14 +77,13 @@
      */
     function getById(id) {
       var deferred = $q.defer();
-      $http.get('/stubs/movies.json')
+      $http.get(TMDBAPI.svc + TMDBAPI.endpoints.movie.replace(':id', id), {
+        params: {
+          api_key: TMDB_APIKEY
+        }
+      })
         .success(function(data) {
-          data = data.filter(function(obj) {
-            if(obj.id === Number(id)) {
-              return obj;
-            }
-          })[0];
-          deferred.resolve(normalizeIt(data));
+          deferred.resolve(normalizeMovie(data));
         });
       return deferred.promise;
     }
@@ -80,10 +95,19 @@
      * @return {Array}  Movie array
      */
     function getByGenre(id) {
-
+      var deferred = $q.defer();
+      $http.get(TMDBAPI.svc + TMDBAPI.endpoints.moviesByGenre.replace(':id', id), {
+        params: {
+          api_key: TMDB_APIKEY
+        }
+      })
+        .success(function(data) {
+          deferred.resolve(normalizeMovie(data[id]));
+        });
+      return deferred.promise;
     }
 
-    function normalizeIt(target) {
+    function normalizeMovie(target) {
       // map for movie data
       var map = {
         id: 'id',

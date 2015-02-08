@@ -16,3 +16,16 @@
     </slide>
   </carousel>
 </div>
+<!-- movies -->
+<div class="container container-movie">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="page-header">{{ mvsVm.title }}</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div ng-if="movie.thumb" ng-repeat="movie in mvsVm.movies" class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><a ng-href="/movies/{{ movie.title | slugify }}/{{ movie.id }}" class="thumbnail"><img ng-src="http://image.tmdb.org/t/p/w154{{movie.thumb}}" title="{{movie.title}}" class="img-responsive"/></a></div>
+  </div>
+</div>

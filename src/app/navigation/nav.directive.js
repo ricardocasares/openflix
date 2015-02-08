@@ -14,8 +14,8 @@
     };
   }
 
-  NavCtrl.$inject = ['MockMovieSvc','$location'];
-  function NavCtrl(MockMovieSvc, $location){
+  NavCtrl.$inject = ['MovieSvc','$location'];
+  function NavCtrl(MovieSvc, $location){
 
     var vm = this;
     vm.genres = [];
@@ -23,7 +23,8 @@
 
     //////////////
 
-    MockMovieSvc.getGenres().then(function(data){
+    MovieSvc.getGenres().then(function(data){
+      console.log(data);
       vm.genres = data;
     });
 

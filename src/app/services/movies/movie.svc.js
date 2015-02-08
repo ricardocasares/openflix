@@ -2,7 +2,9 @@
   'use strict';
   angular
     .module('of.services.movies', [
-      'of.services.movies.mock'
+      'of.services.movies.mock',
+      'of.services.movies.tmdb',
+      'ngStorage',
     ])
     .service('MovieSvc', MovieSvc);
 
@@ -10,11 +12,10 @@
    * Fake movie API service
    * @type {Object}
    */
-  MovieSvc.$inject = ['MockMovieSvc'];
+  MovieSvc.$inject = ['MockMovieSvc', 'TmdbMovieSvc', '$localStorage'];
 
-  function MovieSvc(MockMovieSvc) {
-
-    var instance = MockMovieSvc;
+  function MovieSvc(MockMovieSvc, TmdbMovieSvc, $localStorage) {
+    var instance = $localStorage.goLocal ? MockMovieSvc : TmdbMovieSvc;
 
     /**
      * service object

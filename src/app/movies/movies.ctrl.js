@@ -11,6 +11,7 @@
   MoviesCtrl.$inject = ['collection'];
   function MoviesCtrl(collection) {
     var vm = this;
+    vm.title = 'Movies';
     vm.movies = collection;
   }
 })();
