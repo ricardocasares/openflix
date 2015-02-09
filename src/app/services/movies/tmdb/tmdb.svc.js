@@ -46,6 +46,7 @@
     function getGenres() {
       var deferred = $q.defer();
       $http.get(TMDBAPI.svc + TMDBAPI.endpoints.genres, {
+        cache: true,
         params: {
           api_key: TMDB_APIKEY
         }
@@ -68,6 +69,7 @@
     function getPopular() {
       var deferred = $q.defer();
       $http.get(TMDBAPI.svc + TMDBAPI.endpoints.popular, {
+        cache: true,
         params: {
           api_key: TMDB_APIKEY
         }
@@ -86,6 +88,7 @@
     function getById(id) {
       var deferred = $q.defer();
       $http.get(TMDBAPI.svc + TMDBAPI.endpoints.movie.replace(':id', id), {
+        cache: true,
         params: {
           api_key: TMDB_APIKEY
         }
@@ -105,6 +108,7 @@
     function getByGenre(id) {
       var deferred = $q.defer();
       $http.get(TMDBAPI.svc + TMDBAPI.endpoints.moviesByGenre.replace(':id', id), {
+        cache: true,
         params: {
           api_key: TMDB_APIKEY
         }

@@ -36,6 +36,7 @@
       var deferred = $q.defer();
       $http
         .get(YTSAPI.svc + YTSAPI.endpoints.movie, {
+          cache: true,
           params: {
             query_term: id
           }
