@@ -27,7 +27,8 @@
     "angular-bootstrap": "~0.11.0",
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.3",
     "angular-slugify": "~1.0.0",
-    "ngstorage": "~0.3.0"
+    "ngstorage": "~0.3.0",
+    "angular-chrome-messaging": "git@github.com:elliottsj/angular-chrome-messaging.git"
   },
   "license": "MIT",
   "private": true,
