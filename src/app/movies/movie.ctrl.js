@@ -5,13 +5,14 @@
     .module('of.movies')
     .controller('MovieCtrl', MovieCtrl);
 
-  MovieCtrl.$inject = ['item', 'MovieSvc', 'BitTorrentSvc', '$sce', '$timeout'];
+  MovieCtrl.$inject = ['item', 'MovieSvc', 'BitTorrentSvc', '$sce', '$timeout', '$interval'];
 
-  function MovieCtrl(item, MovieSvc, BitTorrentSvc, $sce, $timeout) {
+  function MovieCtrl(item, MovieSvc, BitTorrentSvc, $sce, $timeout, $interval) {
 
     var vm = this;
 
     vm.videoURL;
+    vm.wait = 0;
     vm.movie = item;
     vm.torrents = 'lookup';
     vm.subtitles = 'lookup';
@@ -57,6 +58,9 @@
     }
 
     function startDownload() {
+      $interval(function() {
+        vm.wait += 5;
+      }, 1000);
       BitTorrentSvc
         .startDownload(vm.torrentModel.url)
         .then(function(torrent) {

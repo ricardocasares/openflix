@@ -15,6 +15,7 @@
       <track ng-if="subtitles" ng-repeat="track in subtitleTracks" src="{{track.url}}" kind="subtitle" srclang="{{track.srclang}}" label="{{track.label}}"/>
     </video>
     <div class="col-lg-12">
+      <progressbar ng-if="mvVm.wait && !mvVm.videoURL" animate="false" value="mvVm.wait" type="success"></progressbar>
       <hr>
       <div ng-show="mvVm.torrents === 'lookup'" class="alert alert-info"><i class="fa fa-fw fa-spin fa-circle-o-notch"></i> Looking for torrents...</div>
       <div ng-hide="mvVm.torrents" class="alert alert-warning"><i class="fa fa-fw fa-warning"></i> Sorry, there are no torrents available for this movie yet</div>
