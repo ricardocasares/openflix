@@ -14,7 +14,7 @@
 
       var port;
       var torrent;
-      var extensionId = 'oemhmpjigefhpdaeepgfojjkchjhfdch';
+      var extensionId = 'jpnedpmdignaapkiedicefekhfnmnnjp';
 
       var service = {
         startDownload: startDownload
