@@ -10,8 +10,8 @@
 </div>
 <div class="container movie-data">
   <div class="row">
-    <video ng-show="playing" controls="controls" class="col-lg-12">
-      <source src="http://www.tools4movies.com/trailers/samples/Django%20Unchained.mp4" type="video/mp4"/>
+    <video ng-if="mvVm.videoURL" controls="controls" class="col-lg-12">
+      <source ng-src="{{ mvVm.videoURL }}" type="video/mp4"/>
       <track ng-if="subtitles" ng-repeat="track in subtitleTracks" src="{{track.url}}" kind="subtitle" srclang="{{track.srclang}}" label="{{track.label}}"/>
     </video>
     <div class="col-lg-12">
@@ -20,7 +20,7 @@
       <div ng-hide="mvVm.torrents" class="alert alert-warning"><i class="fa fa-fw fa-warning"></i> Sorry, there are no torrents available for this movie yet</div>
       <div ng-show="mvVm.movie.torrents" class="btn-toolbar">
         <div class="btn-group">
-          <button type="button" ng-click="playing = !playing" class="btn btn-default"><i class="fa fa-play fa-fw"></i> Play movie</button>
+          <button type="button" ng-click="mvVm.startDownload()" class="btn btn-default"><i class="fa fa-play fa-fw"></i> Play movie</button>
           <button ng-if="movie.inFavs" type="button" ng-click="removeFromFavs()" title="Remove from favorites" class="btn btn-default"><i class="fa fa-fw fa-heart red-heart"></i></button>
           <button ng-if="!movie.inFavs" type="button" ng-click="addToFavs()" title="Save to favorites" class="btn btn-default"><i class="fa fa-fw fa-heart-o"></i></button>
         </div>

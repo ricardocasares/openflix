@@ -1,7 +1,12 @@
 (function() {
   'use strict';
   angular
-    .module('of.movies', ['of.services.movies', 'of.services.torrents'])
+    .module('of.movies', [
+      'ngSanitize',
+      'of.services.movies',
+      'of.services.torrents',
+      'of.services.bittorrent'
+    ])
     .config(routing);
 
   function routing($routeProvider) {
