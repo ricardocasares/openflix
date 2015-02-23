@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>openflix</title>
+  <base href="/">
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <!-- build:css /openflix.css -->
   <!-- bower:css -->
@@ -38,7 +39,6 @@
   <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
   <script src="bower_components/angular-slugify/angular-slugify.js"></script>
   <script src="bower_components/ngstorage/ngStorage.js"></script>
-  <script src="bower_components/angular-chrome-messaging/angular-chrome-messaging.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <!-- endinject -->
@@ -46,12 +46,12 @@
   <!-- build:openflix /openflix.js -->
   <!-- inject:js -->
   <script src="app/services/torrents/yts/yts.svc.js"></script>
+  <script src="app/services/bittorrent/chrome/chrome.svc.js"></script>
   <script src="app/services/movies/tmdb/tmdb.svc.js"></script>
   <script src="app/services/movies/mock-service/mock.svc.js"></script>
-  <script src="app/services/bittorrent/chrome/chrome.svc.js"></script>
   <script src="app/services/torrents/torrent.svc.js"></script>
-  <script src="app/services/movies/movie.svc.js"></script>
   <script src="app/services/bittorrent/bittorrent.svc.js"></script>
+  <script src="app/services/movies/movie.svc.js"></script>
   <script src="app/navigation/nav.module.js"></script>
   <script src="app/navigation/nav.directive.js"></script>
   <script src="app/movies/movies.module.js"></script>

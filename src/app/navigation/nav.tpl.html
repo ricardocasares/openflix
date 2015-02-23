@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">{{ appVm.appname }}</a>
+      <a class="navbar-brand" href="/">{{::appVm.appname}}</a>
     </div>
     <div class="collapse navbar-collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -20,7 +20,7 @@
           </a>
           <ul class="dropdown-menu">
             <li ng-repeat="genre in navVm.genres">
-              <a ng-href="/genre/{{ genre.name | slugify }}/{{ genre.id }}" title="">{{ genre.name }}</a>
+              <a ng-href="/genre/{{::genre.name|slugify}}/{{::genre.id}}" title="">{{::genre.name}}</a>
             </li>
           </ul>
         </li>

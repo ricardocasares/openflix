@@ -6,8 +6,8 @@
     * Chrome app communication service
     */
     angular
-      .module('of.services.bittorrent.chrome', ['ChromeMessaging'])
-      .factory('ChromeTorrentFactory', ChromeTorrentSvc);
+      .module('of.services.bittorrent.chrome', [])
+      .service('ChromeTorrentSvc', ChromeTorrentSvc);
 
     ChromeTorrentSvc.$inject = ['$q'];
     function ChromeTorrentSvc ($q) {

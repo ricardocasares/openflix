@@ -16,7 +16,7 @@
     "kit"
   ],
   "dependencies": {
-    "angular": "~1.3.*",
+    "angular": "~1.3.9",
     "angular-route": "~1.2.*",
     "bootstrap": "latest",
     "angular-loading-bar": "~0.6.0",
@@ -28,7 +28,6 @@
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.3",
     "angular-slugify": "~1.0.0",
     "ngstorage": "~0.3.0",
-    "angular-chrome-messaging": "git@github.com:elliottsj/angular-chrome-messaging.git",
     "angular-sanitize": "~1.3.13"
   },
   "license": "MIT",
@@ -39,8 +38,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "resolutions": {
-    "angular": "~1.2.*"
-  }
+  ]
 }
