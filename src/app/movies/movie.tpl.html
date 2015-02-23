@@ -1,9 +1,9 @@
 <div style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('http://image.tmdb.org/t/p/w780/{{mvVm.movie.poster}}');" class="backdrop">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12"><span>{{ mvVm.movie.releaseDate.split('-')[0] }}</span>
-        <h1>{{ mvVm.movie.title }}</h1>
-        <h2>{{ mvVm.movie.tagline }}</h2>
+      <div class="col-lg-12"><span>{{::mvVm.movie.releaseDate.split('-')[0]}}</span>
+        <h1>{{::mvVm.movie.title}}</h1>
+        <h2>{{::mvVm.movie.tagline}}</h2>
       </div>
     </div>
   </div>
@@ -29,8 +29,8 @@
           <button type="button" ng-click="subtitles = !subtitles" class="btn btn-default"><i ng-show="subtitles" class="fa fa-cc"></i><i ng-hide="subtitles" class="fa fa-cc text-muted"></i><span ng-show="subtitles" class="text-muted"> {{ selectedSubtitle }}</span><span ng-hide="subtitles" class="text-muted"> Off</span></button>
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><i class="fa fa-caret-down"></i></button>
           <ul class="dropdown-menu pull-right">
-            <li ng-repeat-start="(lang, subs) in movie.subtitles" class="dropdown-header">{{ lang  }}
-              <li ng-repeat="sub in subs"><a ng-click="selectSubtitle(lang, $index)">{{lang }} {{$index +1}}</a></li>
+            <li ng-repeat-start="(lang, subs) in movie.subtitles" class="dropdown-header">{{::lang}}
+              <li ng-repeat="sub in subs"><a ng-click="selectSubtitle(lang, $index)">{{::lang}} {{::$index +1}}</a></li>
             </li>
             <li ng-repeat-end=""></li>
           </ul>
@@ -39,7 +39,7 @@
           <button type="button" class="btn btn-default"><i class="fa fa-fw fa-video-camera"></i><span class="text-muted hidden-xs"> {{ selectedTorrent.Quality }}</span></button>
           <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><i class="fa fa-caret-down"></i></button>
           <ul class="dropdown-menu pull-right">
-            <li ng-repeat="t in mvVm.movie.torrents" ng-click="selectTorrent($index)"><a>{{ t.quality }}</a></li>
+            <li ng-repeat="t in ::mvVm.movie.torrents" ng-click="selectTorrent($index)"><a>{{::t.quality }}</a></li>
           </ul>
         </div>
       </div>
@@ -50,17 +50,17 @@
     <div class="col-lg-12">
       <ul class="list-inline">
         <li><strong>Year</strong></li>
-        <li><span class="text-muted"> {{ mvVm.movie.releaseDate.split('-')[0] }}</span></li>
+        <li><span class="text-muted"> {{::mvVm.movie.releaseDate.split('-')[0]}}</span></li>
         <li><strong>Runtime</strong></li>
-        <li><span class="text-muted"> {{ mvVm.movie.runTime }}min</span></li>
+        <li><span class="text-muted"> {{::mvVm.movie.runTime}}min</span></li>
       </ul>
       <ul class="list-inline">
         <li><strong>Genres</strong></li>
-        <li ng-repeat="g in mvVm.movie.genres"><a href="/genre/{{ g.name | slugify }}/{{ g.id }}" class="text-muted">{{ g.name }}</a></li>
+        <li ng-repeat="g in ::mvVm.movie.genres"><a href="/genre/{{::g.name | slugify}}/{{::g.id}}" class="text-muted">{{::g.name}}</a></li>
       </ul>
     </div>
     <div class="col-lg-12">
-      <p class="overview">{{ mvVm.movie.overview }}</p>
+      <p class="overview">{{::mvVm.movie.overview}}</p>
     </div>
   </div>
 </div>
