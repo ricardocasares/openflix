@@ -16,7 +16,7 @@
     "kit"
   ],
   "dependencies": {
-    "angular": "~1.3.*",
+    "angular": "~1.3.9",
     "angular-route": "~1.2.*",
     "bootstrap": "latest",
     "angular-loading-bar": "~0.6.0",
@@ -38,8 +38,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "resolutions": {
-    "angular": "~1.2.*"
-  }
+  ]
 }
