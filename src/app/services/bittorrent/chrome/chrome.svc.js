@@ -7,37 +7,65 @@
     */
     angular
       .module('of.services.bittorrent.chrome', ['ChromeMessaging'])
-      .service('ChromeTorrentSvc', ChromeTorrentSvc);
+      .factory('ChromeTorrentFactory', ChromeTorrentSvc);
 
     ChromeTorrentSvc.$inject = ['$q'];
     function ChromeTorrentSvc ($q) {
 
-      var port;
-      var torrent;
-      var extensionId = 'jpnedpmdignaapkiedicefekhfnmnnjp';
+      return function() {
+        var torrent;
+        var extensionId = 'jpnedpmdignaapkiedicefekhfnmnnjp';
+        var port = chrome.runtime.connect(extensionId);
 
-      var service = {
-        startDownload: startDownload
+        this.startTorrent = function(torrent) {
+          port.postMessage({ command: 'downloadTorrent', data: { torrent: torrent }});
+        };
+
+        this.stopTorrent = function() {
+          port.postMessage({ command: 'stopTorrent', data: {} });
+        };
+
+        this.responseHandler = function(res) {
+
+        };
       };
-
-      return service;
 
       ///////////////
 
-      function startDownload(torrent) {
+      function startTorrent(torrent) {
 
         var deferred = $q.defer();
         port = chrome.runtime.connect(extensionId);
         port.postMessage({ command: 'downloadTorrent', data: { torrent: torrent } });
-        port.onMessage.addListener(function(res) {
+        port.onMessage.addListener(messageHandler);
+        function(res) {
           if(!res.torrent) {
             deferred.reject({ error: 'No torrent!' });
           } else {
+            $interval(function() {
+              getTorrent();
+            }, 2000);
             deferred.resolve(res.torrent);
           }
         });
 
         return deferred.promise;
+      }
+
+      function responseHandler(res) {
+        commands[res.command](res.data);
+      }
+
+      function stopTorrent() {
+        if(port) {
+          port.postMessage({ command: 'removeTorrent' });
+        }
+      }
+
+      function getTorrent() {
+        if(torrent) {
+          return torrent;
+        }
       }
     }
 })();

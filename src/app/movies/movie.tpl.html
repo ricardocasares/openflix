@@ -21,7 +21,7 @@
       <div ng-hide="mvVm.torrents" class="alert alert-warning"><i class="fa fa-fw fa-warning"></i> Sorry, there are no torrents available for this movie yet</div>
       <div ng-show="mvVm.movie.torrents" class="btn-toolbar">
         <div class="btn-group">
-          <button type="button" ng-click="mvVm.startDownload()" class="btn btn-default"><i class="fa fa-play fa-fw"></i> Play movie</button>
+          <button type="button" ng-click="mvVm.startTorrent()" class="btn btn-default"><i class="fa fa-play fa-fw"></i> Play movie</button>
           <button ng-if="movie.inFavs" type="button" ng-click="removeFromFavs()" title="Remove from favorites" class="btn btn-default"><i class="fa fa-fw fa-heart red-heart"></i></button>
           <button ng-if="!movie.inFavs" type="button" ng-click="addToFavs()" title="Save to favorites" class="btn btn-default"><i class="fa fa-fw fa-heart-o"></i></button>
         </div>

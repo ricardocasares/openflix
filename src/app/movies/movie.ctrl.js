@@ -5,9 +5,9 @@
     .module('of.movies')
     .controller('MovieCtrl', MovieCtrl);
 
-  MovieCtrl.$inject = ['item', 'MovieSvc', 'BitTorrentSvc', '$sce', '$timeout', '$interval'];
+  MovieCtrl.$inject = ['item', 'MovieSvc', 'BitTorrentSvc', '$sce', '$timeout', '$interval', '$scope'];
 
-  function MovieCtrl(item, MovieSvc, BitTorrentSvc, $sce, $timeout, $interval) {
+  function MovieCtrl(item, MovieSvc, BitTorrentSvc, $sce, $timeout, $interval, $scope) {
 
     var vm = this;
 
@@ -19,7 +19,8 @@
     vm.movie.torrents = [];
     vm.movie.subtitles = [];
     vm.torrentModel = {};
-    vm.startDownload = startDownload;
+    vm.startTorrent = startTorrent;
+    $scope.$on('$routeChangeStart', stopTorrent);
 
     activate();
 
@@ -33,7 +34,6 @@
       vm.torrents = true;
       vm.movie.torrents = response;
       vm.torrentModel = response[0];
-      console.log(vm.torrentModel);
       subtitleLookup(vm.movie.id);
     }
 
@@ -57,17 +57,21 @@
       vm.movie.subtitles = response;
     }
 
-    function startDownload() {
+    function startTorrent() {
       $interval(function() {
         vm.wait += 5;
       }, 1000);
       BitTorrentSvc
-        .startDownload(vm.torrentModel.url)
+        .startTorrent(vm.torrentModel.url)
         .then(function(torrent) {
           $timeout(function() {
             vm.videoURL = makeURL(torrent);
           }, 20000);
         });
+    }
+
+    function stopTorrent() {
+      BitTorrentSvc.stopTorrent();
     }
 
     function makeURL(data) {

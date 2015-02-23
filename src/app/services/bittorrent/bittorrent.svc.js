@@ -17,7 +17,8 @@
       var instance = ChromeTorrentSvc;
 
       var service = {
-        startDownload: startDownload
+        startTorrent: startTorrent,
+        stopTorrent: stopTorrent
       };
 
       return service;
@@ -28,8 +29,12 @@
        * starts a torrent download
        * @param  {String} hash Torrent download URL or magnet URI
        */
-      function startDownload(torrent) {
-        return instance.startDownload(torrent);
+      function startTorrent(torrent) {
+        return instance.startTorrent(torrent);
+      }
+
+      function stopTorrent() {
+        return instance.stopTorrent();
       }
     }
 })();
