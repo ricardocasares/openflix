@@ -6,7 +6,7 @@ openflix
 In browser torrent streaming open source netflix clone
 
 ## What we got so far
-* Demo: [movies.rutapirata.com](http://movies.rutapirata.com)
+* Demo: [openflix.rutapirata.com](http://openflix.rutapirata.com)
   *  No streaming of any kind, just limited movie browsing and torrent fetching
 
 ## Todo
