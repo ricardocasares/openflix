@@ -33,10 +33,10 @@
     "debug": "^2.0.0",
     "express": "^4.9.5",
     "jade": "^1.7.0",
-    "node-captions": "^0.2.6",
+    "node-captions": "^0.4.6",
     "request": "^2.52.0"
   },
   "devDependencies": {
-    "wiredep": "^2.2.2"
+    "wiredep": "^4.0.0"
   }
 }
